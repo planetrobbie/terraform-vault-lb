@@ -1,5 +1,9 @@
 This Terraform code instantiate a Google Cloud HTTPS Load Balancer as a Frontend to a Vault Cluster.
 
+Load Balancer health checking is using `/v1/sys/health` endpoint to only load balance to the active Vault node in the cluster.
+
+When leader fails, another cluster will be elected, so our Load Balancer will automatically load balance to the new one. See more details on [documentation](https://www.vaultproject.io/api/system/health.html)
+
 ## Usage
 
 Once you've specified the following variables values in your `terraform.tfvars`
@@ -10,7 +14,7 @@ Once you've specified the following variables values in your `terraform.tfvars`
     target_tags - List of target tags for health check firewall rule (vault)
     private_key_pem- Load Balancer TLS Certificate Private key
     cert_pem - Load Balancer TLS Certificate
-    vault_instance_names - list of Vault Server to Load Balance to" (["vault-01", "vault-02"]
+    vault_instance_names - list of Vault Server to Load Balance to (["vault-01", "vault-02"]
 
 You can run
 

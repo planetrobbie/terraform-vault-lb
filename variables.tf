@@ -2,6 +2,10 @@ variable region {
   default = "europe-west1"
 }
 
+variable zone {
+  default = "europe-west1-c"
+}
+
 variable "project_name" {
   description = "GCP project targeted"
 }
@@ -17,4 +21,10 @@ variable "private_key_pem" {
 
 variable "cert_pem" {
   description = "TLS Certificate"
+}
+
+
+variable "instance_prefix" {
+  description = "Vault instance name prefix"
+  default = "vault"
 }

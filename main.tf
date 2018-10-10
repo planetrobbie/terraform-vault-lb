@@ -34,8 +34,8 @@ resource "google_compute_instance_group" "vaults" {
   // Find instance URI with
   // gcloud compute instances list --uri
   instances = [
-    "https://www.googleapis.com/compute/v1/projects/sebastien-demo/zones/europe-west1-c/instances/vault-01",
-    "https://www.googleapis.com/compute/v1/projects/sebastien-demo/zones/europe-west1-c/instances/vault-02",
+    "https://www.googleapis.com/compute/v1/projects/${var.project_name}/zones/${var.zone}/instances/${var.instance_prefix}-01",
+    "https://www.googleapis.com/compute/v1/projects/${var.project_name}/zones/${var.zone}/instances/${var.instance_prefix}-02",
   ]
 
   named_port {
@@ -43,5 +43,5 @@ resource "google_compute_instance_group" "vaults" {
     port = "8200"
   }
 
-  zone = "europe-west1-c"
+  zone = "${var.zone}"
 }

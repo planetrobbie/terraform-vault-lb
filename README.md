@@ -1,8 +1,10 @@
-This Terraform code instantiate a [Google Cloud HTTPS Load Balancer](https://cloud.google.com/load-balancing/docs/https/) as a Frontend to a [Vault](https://www.vaultproject.io/) Cluster.
+This [Terraform](https://www.terraform.io/) code instantiate a [Google Cloud HTTPS Load Balancer](https://cloud.google.com/load-balancing/docs/https/) as a Frontend to a [Vault](https://www.vaultproject.io/) Cluster.
 
 Backend health is checked using `/v1/sys/health` Vault API endpoint to only load balance to the active Vault node in the cluster.
 
-When Vault leader fails, another node will be elected, so our Load Balancer will automatically load balance to the new one. See more details on [documentation](https://www.vaultproject.io/api/system/health.html)
+When Vault leader fails, another node will be elected, so our Load Balancer will automatically load balance to the new one.
+
+See more details on [documentation](https://www.vaultproject.io/api/system/health.html).
 
 ## Usage
 
@@ -14,7 +16,7 @@ Once you've specified the following variables values in your `terraform.tfvars`
 - target_tags: List of target tags for health check firewall rule (vault)
 - private_key_pem: Load Balancer TLS Certificate Private key
 - cert_pem: Load Balancer TLS Certificate
-- vault_instance_names: list of Vault Server to Load Balance to (["vault-01", "vault-02"]
+- vault_instance_names: list of Vault Server to Load Balance to (["vault-01", "vault-02"])
 
 You can run
 
@@ -22,7 +24,7 @@ You can run
     terraform plan
     terraform apply
 
-Next you have to update your DNS record with the IP address of your load balancer, this part can also be automated by leveraging Terraform DNS providers.
+Next you have to update your DNS record with the IP address of your load balancer, found in terraform output. This part can also be automated by creating Google Cloud DNS records with Terraform. Stay tuned !
 
 > From now on, to talk to your cluster using vault CLI you have to export the following environment variable to enable TLS certificate verification.
 
@@ -38,7 +40,7 @@ Next you have to update your DNS record with the IP address of your load balance
 - google_compute_ssl_certificate.default: The certificate resource
 - google_compute_firewall.default-hc: Firewall rule created for each of the backed services to alllow health checks to the instance group.
 - google_compute_http_health_check.default: Health check resources
-- google_compute_global_address.default
+- google_compute_global_address.default: External LB IP Address
 - google_compute_backend_service.default: The backend services created for our Vault cluster
 - google_compute_url_map.default: The default URL map resource
 - google_compute_target_https_proxy.default: The HTTPS proxy resource that binds the url map.

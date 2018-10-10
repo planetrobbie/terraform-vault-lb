@@ -37,9 +37,7 @@ Next you have to update your DNS record with the IP address of your load balance
 - google_compute_global_address.default
 - google_compute_backend_service.default: The backend services created for our Vault cluster
 - google_compute_url_map.default: The default URL map resource
-- google_compute_target_http_proxy.default: TBD
 - google_compute_target_https_proxy.default: The HTTPS proxy resource that binds the url map.
 - google_compute_global_forwarding_rule.https : The global HTTPS forwarding rule
-- google_compute_global_forwarding_rule.http: The global HTTP forwarding rule.
 
 

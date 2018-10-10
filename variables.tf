@@ -1,8 +1,10 @@
 variable region {
+  description "The region to operate under"
   default = "europe-west1"
 }
 
 variable zone {
+  description = "The zone to operate under"
   default = "europe-west1-c"
 }
 
@@ -16,11 +18,11 @@ variable "target_tags" {
 }
 
 variable "private_key_pem" {
-  description = "TLS Certificate Private key"
+  description = "Load Balancer TLS Certificate Private key"
 }
 
 variable "cert_pem" {
-  description = "TLS Certificate"
+  description = "Load Balancer TLS Certificate"
 }
 
 variable "vault_instance_names" {

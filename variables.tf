@@ -33,5 +33,5 @@ variable "vault_instance_names" {
 
 variable "http_forward" {
   description = "by default we disable HTTP Forwarding"
-  default = false
+  default = "false"
 }

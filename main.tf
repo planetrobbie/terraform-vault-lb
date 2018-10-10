@@ -10,6 +10,7 @@ module "gce-lb-https" {
 
   target_tags    = ["${var.target_tags}"]
   ssl            = true
+  http_forward   = false
   private_key    = "${var.private_key_pem}"
   certificate    = "${var.cert_pem}"
 

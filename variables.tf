@@ -23,8 +23,8 @@ variable "cert_pem" {
   description = "TLS Certificate"
 }
 
-
-variable "instance_prefix" {
-  description = "Vault instance name prefix"
-  default = "vault"
+variable "vault_instance_names" {
+  description = "list of Vault Server to Load Balance to"
+  type = "list"
+  default = ["vault-01", "vault-02"]
 }

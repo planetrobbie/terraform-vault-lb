@@ -31,12 +31,9 @@ resource "google_compute_instance_group" "vaults" {
   name        = "vault-servers"
   description = "Vault servers instance group"
 
-  // Find instance URI with
+  // instances need to be specified with their resource URI.
   // gcloud compute instances list --uri
-  instances = [
-    "https://www.googleapis.com/compute/v1/projects/${var.project_name}/zones/${var.zone}/instances/${var.instance_prefix}-01",
-    "https://www.googleapis.com/compute/v1/projects/${var.project_name}/zones/${var.zone}/instances/${var.instance_prefix}-02",
-  ]
+  instances = "${formatlist("https://www.googleapis.com/compute/v1/projects/${var.project_name}/zones/${var.zone}/instances/%s","${var.vault_instance_names}")}"
 
   named_port {
     name = "http"

@@ -20,20 +20,29 @@ You can run
 
 Next you have to update your DNS record with the IP address of your load balancer, this part can also be automated by leveraging Terraform DNS providers.
 
+> To talk to your cluster using vault CLI you have to export the following environment variable
+
+    export VAULT_CACERT=/<PATH_TO>/ca_chain.pem
+
 > you can also run this code thru [Terraform Enterprise](https://www.hashicorp.com/products/terraform)
 
 > This code consume the official [Google Cloud Module](https://registry.terraform.io/modules/GoogleCloudPlatform/lb-http/google/) which setup a Global HTTP Load Balancer for GCE using forwarding rules.
 
 ## Resources created
 
-- google_compute_instance_group.vaults
-- google_compute_ssl_certificate.default
-- google_compute_firewall.default-hc
-- google_compute_http_health_check.default
+- google_compute_instance_group.vaults: Instance Group for our Vault cluster
+- google_compute_ssl_certificate.default: The certificate resource
+- google_compute_firewall.default-hc: Firewall rule created for each of the backed services to alllow health checks to the instance group.
+- google_compute_http_health_check.default: Health check resources
 - google_compute_global_address.default
-- google_compute_backend_service.default
-- google_compute_url_map.default
-- google_compute_target_http_proxy.default
-- google_compute_target_https_proxy.default
-- google_compute_global_forwarding_rule.https
-- google_compute_global_forwarding_rule.http
+- google_compute_backend_service.default: The backend services created for our Vault cluster
+- google_compute_url_map.default: The default URL map resource
+- google_compute_target_http_proxy.default: TBD
+- google_compute_target_https_proxy.default: The HTTPS proxy resource that binds the url map.
+- google_compute_global_forwarding_rule.https : The global HTTPS forwarding rule
+- google_compute_global_forwarding_rule.http: The global HTTP forwarding rule.
+
+
+google_compute_target_http_proxy.default: The HTTP proxy resource that binds the url map. Created when input ssl is false.
+
+

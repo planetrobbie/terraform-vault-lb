@@ -26,7 +26,7 @@ variable cert_pem {
 }
 
 variable vault_instance_names {
-  description = "list of Vault Server to Load Balance to"
+  description = "list of Vault Servers to Load Balance to"
   type = "list"
   default = ["vault-01", "vault-02"]
 }

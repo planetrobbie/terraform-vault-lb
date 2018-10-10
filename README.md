@@ -1,8 +1,8 @@
-This Terraform code Instantiate a Google Cloud HTTPS Load Balancer as a Frontend to a Vault Cluster.
+This Terraform code instantiate a Google Cloud HTTPS Load Balancer as a Frontend to a Vault Cluster.
 
 ## Usage
 
-Once you've specified the following variables values
+Once you've specified the following variables values in your `terraform.tfvars`
 
     region - The region to operate under (europe-west1)
     zone - The zone to operate under (europe-west1-c)
@@ -41,8 +41,5 @@ Next you have to update your DNS record with the IP address of your load balance
 - google_compute_target_https_proxy.default: The HTTPS proxy resource that binds the url map.
 - google_compute_global_forwarding_rule.https : The global HTTPS forwarding rule
 - google_compute_global_forwarding_rule.http: The global HTTP forwarding rule.
-
-
-google_compute_target_http_proxy.default: The HTTP proxy resource that binds the url map. Created when input ssl is false.
 
 

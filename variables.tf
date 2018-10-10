@@ -30,8 +30,3 @@ variable vault_instance_names {
   type = "list"
   default = ["vault-01", "vault-02"]
 }
-
-variable http_forward {
-  description = "Set to `false` to disable HTTP port 80 forward"
-  default = "false"
-}

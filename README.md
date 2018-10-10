@@ -1,20 +1,20 @@
-This Terraform code instantiate a Google Cloud HTTPS Load Balancer as a Frontend to a Vault Cluster.
+This Terraform code instantiate a [Google Cloud HTTPS Load Balancer](https://cloud.google.com/load-balancing/docs/https/) as a Frontend to a [Vault](https://www.vaultproject.io/) Cluster.
 
-Load Balancer health checking is using `/v1/sys/health` endpoint to only load balance to the active Vault node in the cluster.
+Backend health is checked using `/v1/sys/health` Vault API endpoint to only load balance to the active Vault node in the cluster.
 
-When leader fails, another cluster will be elected, so our Load Balancer will automatically load balance to the new one. See more details on [documentation](https://www.vaultproject.io/api/system/health.html)
+When Vault leader fails, another node will be elected, so our Load Balancer will automatically load balance to the new one. See more details on [documentation](https://www.vaultproject.io/api/system/health.html)
 
 ## Usage
 
 Once you've specified the following variables values in your `terraform.tfvars`
 
-    region - The region to operate under (europe-west1)
-    zone - The zone to operate under (europe-west1-c)
-    project_name - GCP project targeted
-    target_tags - List of target tags for health check firewall rule (vault)
-    private_key_pem- Load Balancer TLS Certificate Private key
-    cert_pem - Load Balancer TLS Certificate
-    vault_instance_names - list of Vault Server to Load Balance to (["vault-01", "vault-02"]
+- region: The region to operate under (europe-west1)
+- zone: The zone to operate under (europe-west1-c)
+- project_name: GCP project targeted
+- target_tags: List of target tags for health check firewall rule (vault)
+- private_key_pem: Load Balancer TLS Certificate Private key
+- cert_pem: Load Balancer TLS Certificate
+- vault_instance_names: list of Vault Server to Load Balance to (["vault-01", "vault-02"]
 
 You can run
 
@@ -24,7 +24,7 @@ You can run
 
 Next you have to update your DNS record with the IP address of your load balancer, this part can also be automated by leveraging Terraform DNS providers.
 
-> To talk to your cluster using vault CLI you have to export the following environment variable
+> From now on, to talk to your cluster using vault CLI you have to export the following environment variable to enable TLS certificate verification.
 
     export VAULT_CACERT=/<PATH_TO>/ca_chain.pem
 

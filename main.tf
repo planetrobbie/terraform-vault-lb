@@ -37,7 +37,7 @@ resource "google_compute_instance_group" "vaults" {
   instances = "${formatlist("https://www.googleapis.com/compute/v1/projects/${var.project_name}/zones/${var.zone}/instances/%s","${var.vault_instance_names}")}"
 
   named_port {
-    name = "http"
+    name = "${var.healthcheck_protocol}"
     port = "8200"
   }
 

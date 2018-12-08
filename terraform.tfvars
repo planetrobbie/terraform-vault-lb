@@ -1,1 +1,5 @@
 project_name = "<YOUR_GCP_PROJECT>"
+gcp_dns_zone = "<YOUR_DNS_ZONE>"
+gcp_dns_domain = "<YOUR_DNS_DOMAIN>"
+private_key_pem = "<TLS_PRIVATE_KEY>"
+cert_pem = "TLS_CA_CERT"

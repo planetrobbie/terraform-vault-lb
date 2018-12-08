@@ -5,7 +5,7 @@ provider google {
 
 module "gce-lb-https" {
   source         = "replicated.yet.org/yet/lb-http/google"
-  version        = "1.0.10"
+  version        = "1.0.11"
   name           = "vault-https-lb"
 
   target_tags    = ["${var.target_tags}"]

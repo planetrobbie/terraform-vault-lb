@@ -4,8 +4,8 @@ provider google {
 }
 
 module "gce-lb-https" {
-  source         = "GoogleCloudPlatform/lb-http/google"
-  version        = "1.0.10"
+  source         = "replicated.yet.org/yet/lb-http/google"
+  version        = "1.0.9"
   name           = "vault-https-lb"
 
   target_tags    = ["${var.target_tags}"]

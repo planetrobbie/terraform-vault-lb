@@ -5,5 +5,5 @@ output public_ip {
 
 output fqdn {
   description = "Fully Qualified Domain Name of your Google Cloud GSLB"
-  valut = "vault.${var.gcp_dns_domain}"
+  value = "vault.${var.gcp_dns_domain}"
 }

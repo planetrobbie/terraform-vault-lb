@@ -24,7 +24,7 @@ module "gce-lb-https" {
 
   backend_params = [
     // health check path, port name, port number, timeout seconds.
-    "/v1/sys/health,${var.healthcheck_protocol},8200,5",
+    "/v1/sys/health,https,8200,5",
   ]
 }
 
@@ -37,7 +37,7 @@ resource "google_compute_instance_group" "vaults" {
   instances = "${formatlist("https://www.googleapis.com/compute/v1/projects/${var.project_name}/zones/${var.zone}/instances/%s","${var.vault_instance_names}")}"
 
   named_port {
-    name = "${var.healthcheck_protocol}"
+    name = "https"
     port = "8200"
   }
 

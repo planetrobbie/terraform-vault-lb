@@ -31,6 +31,11 @@ variable vault_instance_names {
   default = ["vault-01", "vault-02"]
 }
 
+variable healthcheck_protocol {
+  description = "checking Vault health on HTTP or HTTPS ?"
+  default = "http"
+}
+
 #### DNS
 
 # Google Cloud DNS Zone

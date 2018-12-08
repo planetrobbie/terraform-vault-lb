@@ -24,7 +24,7 @@ module "gce-lb-https" {
 
   backend_params = [
     // health check path, port name, port number, timeout seconds.
-    "/v1/sys/health,http,8200,5",
+    "/v1/sys/health,${var.healthcheck_protocol},8200,5",
   ]
 }
 
